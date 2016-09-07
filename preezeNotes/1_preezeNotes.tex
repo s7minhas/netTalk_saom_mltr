@@ -1,0 +1,112 @@
+====================================================================================
+====================================================================================
+Intro
+==
+Thanks for inviting me here to give this talk. I'm very much looking forward to hearing your feedback. 
+
+The topic of my talk today will be on the role of network analysis when it comes to studying relational data. 
+
+To begin I will first briefly review the standard approaches used to understand relational data, and then discuss the potential statistical issues associated with those approaches.
+
+Next, I will present a network oriented approach to dealing with relational data and will conclude by discussing an application of this approach to understanding the evolution of a particular type of network that has been studied in my substantive field of interest, international political economy. 
+====================================================================================
+====================================================================================
+
+====================================================================================
+====================================================================================
+Relational Data
+==
+The type of data structures that occupy most of my time are what is known as relational data. These types of data structures capture the interactions that occur between actors. Examples of this type of data span across disciplines. Bilateral trade flows in economics are an example of relational data, any analysis involving linkages between individuals on facebook or twitter are another, and in my substantive field of interest some of the more prominent examples involve interstate conflict and the formation of political arrangements between countries such as alliances, like NATO, or trading agreements like NAFTA.
+
+This network graphic here on the left illustrates what this data might look like. The circles referred to as nodes designate actors within this network, and the lines connecting them are edges. In this case, these edges are directed indicating that an action was sent by one actor to another. 
+
+Here we have four actors, and we can see that i has sent a particular type of action to j and l. For the purpose of this simple example lets say that this interaction indicates that i has initiated some type of aggressive behavior against j and l. 
+
+Now my particular interest revolves around predicting and understanding how networks evolve. And one of the key arguments that I'll be presenting throughout this talk is that to understand the evolution of networks we have to take into account the existing structure of the network. Specifically this means we can predict how relationships between actors evolve, based on the set of interdependent existing relationships.
+
+In the networks, literature interdependencies come in many flavors. A common type of interdependency that arises in directed data is known as reciprocity. In the example, shown here it is likely that in the next observed period of this network we will expect j and/or l to develop aggressive behavior against i. 
+
+Now this idea of network interdependence can lead us to not only predict the creation of new ties but also the lack of a tie. In period 3, k initiates aggressive behavior against i, Given that i has initiated aggressive behavior against both j and l, it might be unlikely that j and k would then initiate aggressive behavior between themselves. This can be thought of as a negative type of transitivity, where "an enemy of an enemy is not your enemy".
+
+The key point to take away here is that the current set of relational configurations within a network can serve as a determinant of how that network evolves because the decisions actors make in relational system might be interdependent. 
+
+Now when it comes time to actually analyze relational data such as this, scholars almost invariably turn to what is known as the directed dyadic design. Dyadic because the unit of analysis here is the interaction between a pair of countries. 
+
+An example of how this type of data structure is prepared is shown on the bottom. The first column denotes the actor that sent an action, the second that received it, the third the time period, and the last here describes the interaction that took place. 
+
+To explain the evolution of this binary network, the standard approach across many disciplines has been to run a simple logistic regression. And maybe some some additional terms to account for temporal dependence a la Carter and Signorino.
+
+% which serves as a third-order Taylor series approximation to the hazard.2 As we later show, the cubic polynomial approximation does not cause the same data problems as time dummies. Moreover, the cubic polynomial is related to splined time but much easier to implement and to interpret. Indeed, modeling nonproportional hazards is relatively straightforward with the cubic polynomial approach 
+====================================================================================
+====================================================================================
+Literature
+==
+Within political science this has been and remains the canonical design for studying relational data of all sorts. Examples of this research design have been applied to the study of trade flows, conflict, and trade agreement formation. 
+
+% by Pollins (1989) and Mansfield, Milner and Rosendorff (2000). This design has also been applied to the study of conflict by Lemke and Reed (2001) and Dafoe (2011).
+
+And obviously the list could easily go on and on, here I have just selected a small set of articles that were published in two of the most well regarded journals in political science, the AJPS and APSR. 
+
+The key assumption scholars make when employing this approach is that the international system is a collection of isolated dyads rather than a broader interconnected system. This means that the relationship for any given pair of states is considered independent of what's occurring anywhere else in the world. 
+
+Independent meaning that whatever we observe as an outcome variable in one case does not depend on the value the outcome variable has in other cases. The assumption of independence is one of the most important and crucial leaps we make when working with any statistical model. 
+====================================================================================
+==================================================================================== 
+
+====================================================================================
+====================================================================================
+Does this matter?
+==
+Now why is that? Well lets say that for our set of n actors we want to fit some generalized linear model. The parameters of this model and the likelihood can be expressed as:
+
+Due to the conditional independence assumption, the likelihood can be expressed as a product over the density f. 
+
+if the observations i are not independent, the product cannot be taken to produce a valid likelihood. In non-relational settings, such as survey research, where respondents are unlikely to know/affect one another, independence is usually a reasonable assumption.
+
+For research, however, where the actors involved do have some view of the overall network and opportunity to condition their actions on the behavior of others, then the basic assumption that allows for the creation of this likelihood is violated. 
+
+% p(a ∩ b) = p(a)p(b).
+% p(a|b) = p(a ∩ b)/p(b),
+% p(a ∩ b) = p(a|b)p(b).
+% p(a ∩ b) = p(a)p(b)
+% p(a ∩ b|c) = p(a|c)p(b|c)
+
+% While mathematically convenient, this assumption may not be plausible when the data are grouped. That is, there is some heterogeneity within the data not captured within the covariates X which threaten the conditional independence assumption.
+====================================================================================
+====================================================================================
+
+====================================================================================
+====================================================================================
+Ignore IID assumption?
+==
+While regression models are often robust to violations of their assumptions, such models are particularly non-robust to the violation of independence brought on by relational data. 
+
+In fact, when independence is violated, regression models are biased in a way that can lead the researcher to believe the covariates have much stronger effects on the outcome of interest than they actually do. 
+
+Crucially, even if the researcher is only interested in the effect of one or more monadic or dyadic covariates, a dyadic design is still biased if there are unmodeled higher order dependencies that generated the data.
+====================================================================================
+====================================================================================
+
+====================================================================================
+====================================================================================
+What to do?
+==
+One approach that has been often used by James Fowler and Zev Maoz has been to simply incorporate network measures such as reciprocity and transitivity into existing GLM frameworks. The issue here, however, is that the researcher must be aware of every type of interdependency that might exist within their dataset. 
+
+% However, because it applies standard regression to account for this interdependence, it does not do away with the independence assumption and, as such, does not solve the bias problem discussed above. Furthermore, this approach treats structural effects, which are necessarily endogenous to the outcome network, as exogenous to the network
+
+A number of alternative approaches have been developed...
+
+The one that I will focus on in this talk is the SAOM framework developed by Tom Snijders.
+
+A framework that is seeing increasing usage across a variety of disciplines.
+
+% Finger & Lux - link formatin between banks in the interbank market
+% Balland et al. - ties between firms in the video game industry
+
+% Broekel et al. - present a comparison of network approaches for scholars studying economic geography
+
+% Preciado et al. - formation of adolescent friendships
+% Emery et al. - how personality traits affect leadership emergence
+====================================================================================
+====================================================================================

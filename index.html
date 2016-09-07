@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Longitudinal and Multilayer Networks</title>
+
+		<meta name="description" content="Longitudinal and Multilayer Networks">
+		<meta name="author" content="Shahryar Minhas, Postdoctoral Research Associate">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+		<!-- theme options:  Black - White - League - Sky - Beige - Simple - Serif - Blood - Night - Moon - Solarized-->
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+			<section></section>
+				<section data-background='assets/randNet/netrand10.gif'>
+					<h3>Longitudinal and <br> Multilayer Networks </h3> <br><br>
+					<p>
+						<small> 
+							Shahryar Minhas <br> 
+							PostDoc, Duke University <br> 
+							<a href="http://s7minhas.com">s7minhas.com</a> <br>
+							<a href="http://github.com/s7minhas">github.com/s7minhas</a> 
+						</small>
+					</p>
+
+    <aside class="notes">
+        Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+    </aside>
+
+				</section>
+
+				<section>
+					
+					<section>
+						<h2>Relational Data</h2>
+
+							<div id="image-table" class="fragment">
+							    <table>
+							        <tr>
+							            <td style="padding:5px">
+							                <img src="assets/simpNet/simpU1.png" style="width: 300px; background:none; border:none; box-shadow:none;">
+							              </td>
+							            <td style="padding:5px" class="fragment">
+							                <img src="assets/simpNet/simpU2.png" style="width: 300px; background:none; border:none; box-shadow:none;">
+							             </td>
+							            <td style="padding:5px" class="fragment">
+							                <img src="assets/simpNet/simpU3.png" style="width: 300px; background:none; border:none; box-shadow:none;">
+							             </td>							             
+							        </tr>
+							        <tr class="fragment">
+							            <td style="padding:5px;font-size: 15px;">
+											$\begin{array}{cccc}
+											sender & receiver & time & event \\ \hline
+											i & j & t=1 & 1 \\
+											i & k & t=1 & 0 \\
+											i & l & t=1 & 1 \\					
+											j & i & t=1 & 0 \\															
+											j & k & t=1 & 0 \\										
+											j & l & t=1 & 0 \\															
+											k & i & t=1 & 0 \\
+											k & j & t=1 & 0 \\
+											\vdots & \vdots & \vdots & \vdots \\
+											\end{array}$			
+							              </td>
+							            <td style="padding:5px;font-size: 15px;">
+											$\begin{array}{cccc}
+											sender & receiver & time & event \\ \hline
+											i & j & t=2 & 1 \\
+											i & k & t=2 & 0 \\
+											i & l & t=2 & 1 \\					
+											j & i & t=2 & 1 \\															
+											j & k & t=2 & 0 \\										
+											j & l & t=2 & 0 \\															
+											k & i & t=2 & 0 \\
+											k & j & t=2 & 0 \\
+											\vdots & \vdots & \vdots & \vdots \\
+											\end{array}$			
+							             </td>
+							            <td style="padding:5px;font-size: 15px;">
+											$\begin{array}{cccc}
+											sender & receiver & time & event \\ \hline
+											i & j & t=3 & 1 \\
+											i & k & t=3 & 0 \\
+											i & l & t=3 & 1 \\					
+											j & i & t=3 & 1 \\															
+											j & k & t=3 & 0 \\										
+											j & l & t=3 & 0 \\															
+											k & i & t=3 & 1 \\
+											k & j & t=3 & 0 \\
+											\vdots & \vdots & \vdots & \vdots \\
+											\end{array}$			
+							             </td>							             
+							        </tr>							        
+							    </table>
+							</div>
+
+					</section>
+
+					<section>
+					<h2>IID Approach</h2>
+
+							<!-- \text{Morrow et al. (1999)} &  -->
+							<!-- \text{Mansfield & Milner (2014)} \\ -->
+
+						\begin{array}{ll}
+							\text{Dixon (1983)} & 
+							\text{Pollins (1989)} \\ 
+							\text{Mansfield et al. (2000)} & 
+							\text{Lemke & Reed (2001)} \\
+							\text{Mithcell (2002)} & 
+							\text{Dafoe (2011)} \\ 
+							\text{Fuhrmann & Sechser (2014)} &
+							\text{Carnegie (2014)} \\ 
+						\end{array}					
+
+						<br><br>All published in AJPS or APSR.
+
+					</section>
+
+					<section>
+						<h2>Does this matter?</h2>
+						<div style="text-align:left">For our set of $n$ actors $\{i, j, k, l\}$, say we want to fit a generalized linear model: 
+
+						<div class="fragment">
+						<small><ul>
+							<li>$\mathbf{y}$ represents values of our relational dependent variable,</li>
+							<li>$\mathbf{X}$ our data matrix,</li>
+							<li>$\boldsymbol{\theta}$ a vector of parameters to be estimated,</li>
+							<li>and $f$ a probability distribution (e.g., Bernoulli, Normal).</li>
+						</ul></small><br><br>
+
+						$ L(\boldsymbol{\theta} \; | \; \mathbf{y}, \mathbf{X}) = f(y_{ij}, y_{ik}, y_{il}, \ldots, y_{li}, y_{lj}, y_{lk} \; | \; \mathbf{x}_{ij}, \boldsymbol{\theta}) $ 
+						</div><br>
+
+						<div class="fragment">
+						<div style="text-align:left">If $\mathbf{y}$ are conditionally independent, we can rewrite joint as:</div><br>
+						<div>$L(\boldsymbol{\theta} \; | \; \mathbf{y}, \mathbf{X}) = \prod f(\mathbf{y} \; | \; \mathbf{X}, \boldsymbol{\theta})$</div>
+						</div>
+					</section>
+
+					<section>
+						<h2>Ignore IID Assumption?</h2>
+
+						\begin{array}{ll}
+						\text{Beck et al. (1998)} & \text{Franzese & Hayes (2007)} \\
+						\text{Signorino (1999)} & \text{Cranmer & Desmarais (2011)} \\
+						\text{Hoff & Ward (2004)} & \text{Erikson & Pinto (2014)} \\
+						\end{array}
+
+					</section>
+
+					<section>
+						<h2>What to do?</h2>
+						<ul class="fragment fade-out">
+							<li>Include endogenous network measures within extant modeling approaches (e.g., Fowler 2006; Maoz 2009)</li>
+						</ul>
+						<ul class="fragment">
+							<li>Employ a network based approach that accounts for and measures interdependence</li>
+							<ul>
+								<li>Latent Space Approach: Hoff (2003)</li>
+								<li>Exponential Random Graph Model (ERGM): Hanneke & Xing (2007)</li>
+								<li>Stochastic Actor Oriented Model (SAOM): Snijders (1996)</li>
+							</ul>
+						</ul>
+					</section>			
+
+				<section>
+					<h2>Usage of SAOM Approach</h2>
+
+						<div style="font-size: 30px;">
+						\begin{array}{lll}
+						Economics & Geography & Psychology \\ \hline
+						\text{Balland et al. (2013)} & \text{Boschma et al. (2014)} & \text{Preciado et al. (2012)} \\
+						\text{Finger & Lux (2014)} & \text{Broekel et al. (2014)} & \text{Emery et al. (2013)} \\
+						\end{array}			
+						</div>
+
+				</section>
+
+				</section>
+					
+				<section>
+
+					<section>
+						<h2>Network Model Data Structure</h2>
+						<ul>
+							<li> Let $\mathcal{G} = \{1, ..., g\}$ denote the set of actors </li>
+							<li class="fragment"> The relation between any two actors $ij \in \mathcal{G}$ in a given year $t$ is defined as: 
+							<br><br>
+							$y_{ij, t} = \left\{
+								\begin{array}{ll}
+									1 & : \text{if an event has taken place or}  \\
+									&   \;\;\text{persists between $i$ and $j$ at time t} \\
+									0 & : \text{otherwise} 
+								\end{array}
+								\right.$
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Time Series of Networks</h2>
+							<div style="text-align:left"> The system of relations between every pair of actors is summarized in an adjacency matrix, for example:</div>
+
+							<center>
+							<div style="float:left">
+							<span style="font-size:0.4em">
+							$\begin{array}{cccc}
+							sender & receiver & time & event \\ \hline
+							i & j & t & 1 \\
+							i & k & t &0 \\
+							i & l & t &1 \\					
+							j & i & t &1 \\															
+							j & k & t &0 \\										
+							j & l & t &0 \\															
+							k & i & t &1 \\																				
+							k & j & t &0 \\																				
+							k & l & t &0 \\																				
+							l & i & t &1 \\																				
+							l & j & t &0 \\																				
+							l & k & t &0 \\
+							\vdots & \vdots & \vdots & \vdots \\		
+							\end{array}$			
+							</span>
+							</div>
+
+							<div style="float:left" class="fragment"><a href="#" class="navigate-down">
+							<img style="width: 265px; background:none; border:none; box-shadow:none;" data-src="assets/saomEqn/adjMatSmallArrow.png" alt="adjMat">							
+							</a></div>
+							</center>
+
+							<div class="fragment">
+							<center>
+							<div style="float:left"><a href="#" class="navigate-down">
+							<img style="width: 400px; background:none; border:none; box-shadow:none;" data-src="assets/saomEqn/tensorArrow.png" alt="adjMat">							
+							</a></div>
+							</center>
+
+							<div style="text-align:left;float:left;"> $\mathbf{Y}$ represents time series of networks, $T = \{1, \ldots, n\}$ </div>
+							</div>
+					</section>
+
+					<section>
+						<h2>SAOM Assumptions</h2>
+						<ul>
+							<li class="fragment"> Actors control their outgoing ties and have full knowledge of broader network  </li>
+							<li class="fragment" > Evolution of network process occurs in microsteps  </li>
+							<li class="fragment"> Only one tie can change at a microstep </li>
+							<li class="fragment"> Tie change only depends on the present network </li>
+						</ul>
+					</section>		
+
+					<section>
+						<h2>SAOM Broadstrokes</h2>
+						<ul>
+							<li class="fragment">The simulation starts out at the network observed at the first time point $t_{0}$.</li>
+							<li class="fragment">An actor is chosen randomly using a <span style="background-color: #d0d1e6">rate function</span>.</li>
+							<li class="fragment">The identified actor gets the opportunity to set a micro step. The actor's choice is determined by their <span style="background-color: #d0d1e6">objective function</span>.</li>
+							<li class="fragment">Model time is updated and simulation proceeds at step 2.</li>
+							<li class="fragment">The simulation terminates once modified network resembles network at $t_{1}$.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Rate Function</h2>
+
+						<ul>
+							<li class="fragment">Waiting time until change can be made by any actor follows an exponential distribution with parameter $\lambda_{t} g$</li>
+<!-- 							<li>Values of $\lambda_{t}$ are estimated by calculating the number of edge differences between networks:
+							$\sum_{i,j=1, \; i \neq j } | y_{ij, t_1} - y_{ij, t_0}  | $
+							</li> -->
+							<!-- <li>The higher $\lambda_{t}$ is the greater the number of changes between observation moments </li> -->
+							<!-- <li class="fragment">Probability that an actor $i$ has the opportunity to make a change is equal to $1/g$</li> -->
+						</ul>
+
+					</section>
+
+					<section>
+						<h2>Actor's Objective Function</h2>
+							$f_{i}(\beta, x(i \leadsto j)) = \sum_{l=1}^{k} \beta_{l} s_{il} (x(i \leadsto j)) + U_{i}(t,x,j)$, where
+							<br>
+							<br>
+							<ul>
+								<li class='fragment'> $s_{il} (x(i \leadsto j))$ represents $k$ structural and exogenous effects  </li>
+								<li class='fragment'>  $\beta_{l}$ are statistical parameters  </li>
+								<li class='fragment'> and $U_{i}(t,x,j)$ is a random utility term </li>
+							</ul>
+					</section>
+					
+					<section>
+						<h2>Multinomial Choice Model</h2>
+						<br>
+						<br>						
+						$ p_{ij}(\beta, x(i \leadsto j)) = \dfrac{ exp(f_{i}(\beta, x(i \leadsto j))) }{ \sum_{h=1}^{g} exp(f_{i}(\beta, x(i \leadsto h)))  }  $
+<!-- 						<ul>
+							<li class="fragment"> Represents the probability with which actor $i$ changes his outgoing ties  </li>
+							<li class="fragment"> When $i=j$ this probability refers to the probability of not changing anything  </li>
+						</ul> -->
+					</section>
+					
+					<!-- <section> -->
+						<!-- <h2>Continuous-Time Markov Chain</h2> -->
+
+						<!-- \begin{align} -->
+						<!-- q(ij) &= lim_{dt \rightarrow 0} \dfrac{ P(X(t+dt) = x(i \leadsto j) \; | \; X(t) = x) }{ dt } \\ -->
+						<!-- &= \lambda \; p_{ij}(x) \text{, where } \lambda = 1/g -->
+						<!-- \end{align} <br> -->
+
+						<!-- <ul style="text-align:left"> -->
+							<!-- <li> $\lambda$ designates the rate at which any actor will be selected to change a tie</li> -->
+						<!-- </ul> -->
+					<!-- </section> -->
+
+					<section>
+						<h2>Parameter Estimation</h2>
+						<ul>
+							<li>Solving the model requires the estimation of $\boldsymbol\theta = (\boldsymbol\lambda, \boldsymbol\beta)$ using a Method of Moments approach (MoM)</li>
+							<!-- <ul class="fragment"> -->
+								<!-- <li>$p = n - 1 + k$</li>							 -->
+								<!-- <li></li> -->
+							<!-- </ul> -->
+<!-- 							<li class="fragment">A suitable statistic $S = (S_{1}, \ldots, S_{p})$ of network activity should be chosen such that $E_{\boldsymbol\theta}(S_{p})$ is a monotonic function of $\boldsymbol\theta_{p}$</li> -->
+							<li class="fragment">Suitable statistic for $\boldsymbol\lambda$: </li><br>
+							<ul>
+								<li class="fragment">$S_{\lambda_{t_{m}}} = \sum_{i,j=1, \; i \neq j}^{g} | Y_{ij,t_{m+1}} - Y_{ij, t_{m}}  |  $</li>
+							</ul><br>
+							<li class="fragment">Suitable statistic for $\boldsymbol\beta$: </li><br>
+							<ul>
+								<li class="fragment">$S_{\beta_{l,t_{m}}} = \sum_{i=1}^{g} s_{il}(Y_{t_{m+1}})$</li>
+							</ul>							
+						</ul>
+					</section>
+
+					<section>
+						<h2>Stochastic Approximation Process</h2>
+						<ul>
+							<li>Combining the suitable statistics, we next determine the value $\hat{\boldsymbol\theta}$ for $\boldsymbol\theta$ as the solution of the system of equations:</li>
+						</ul>
+						<br>
+						<br>
+
+						<div class="fragment">
+
+						\begin{align}
+							g_{n}(\boldsymbol\theta | z_{n}) = \sum_{t_{a} \in T} (E_{\boldsymbol\theta} \{ u(Y^{(a+1)} | Y^{(a)} = y^{(a)})  \} - u(y^{(a+1)}) ), 
+						\end{align}
+
+						<ul>
+							<li>$z_{n}$ simply means all available data</li>
+							<li>$u(x)$ corresponds to the statistic being estimated</li>
+						</ul>
+						<br><br>	
+						</div>																	
+						
+						<div class="fragment">
+						<ul>
+							<li>The estimation for the MoM relies on MCMC simulations of the network change process (Robbins & Monro, 1951)</li>
+						</ul>
+						</div>
+
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>International Law & BITs</h2>
+						<a href="#" class="navigate-down">
+							<img style="width: 800px; background:none; border:none; box-shadow:none;" data-src="assets/other/treatyCollage.png" alt="treatySnaps">
+						</a>
+					</section>
+
+					<section data-background='assets/randNet/netrand10.gif'>
+						<h2>Do BITs Matter?</h2>
+						<div class="fragment">
+						<a href="#" class="navigate-down">
+							<img style="width: 400px; background:none; border:none; box-shadow:none;" data-src="assets/other/jeff2.png" alt="jeff">
+						</a>
+						</div>
+					</section>
+
+					<section>
+						<h2>Formation of BIT Network</h2>
+						<a href="#" class="navigate-down">
+							<video data-autoplay controls id="video" style="width:900px; background:none; border:none; box-shadow:none;" data-src="assets/bitNet/bitNet10.mov" alt="bitNet"></video>
+							<img style="position:relative; top: -250px; left: 400px; width: 300px; height: 150px; background:none; border:none; box-shadow:none;" data-src="assets/bitNet/bitMapTrans.png" alt="bitMap1">	
+						</a>
+					</section>
+				
+				</section>
+
+				<section>
+					
+					<section data-background='assets/randNet/netrand10.gif'>
+						<h2>Credible Commitment?</h2>
+
+						<br>
+						<br>
+						<div style="float:left" class="fragment">
+						\begin{array}{l}
+							 \text{Vandevelde (1998)} \\ \text{Swenson (2005)} \\
+							 \text{Büthe & Milner (2009)} \\ \text{Lupu & Poast (2013)} \\
+							  \text{Jandhyala et al. (2011)} \\
+						\end{array}
+						</div>
+					
+					</section>
+					
+<!-- 					<section>
+						<p>
+							Fecàk (2011) notes that as the parliament of Czechoslovakia was ratifying over a dozen BITs between 1991 and 1992 there was <span class="fragment highlight-blue">no discussion about the dispute settlement mechanisms</span> embedded within these agreements.
+						</p>
+					</section> -->
+					<section>
+						<p>
+							An official responsible for negotiating BITs for the Dominican Republic remarked that these agreements were just a “<span class="fragment highlight-blue">marketing sign for the country</span>” (Poulsen, 2011).
+						</p>
+					</section>
+<!-- 					<section>
+						<p>
+							Makhdoom Khan, the Attorney General of Pakistan from 2001 to 2007, when asked by the Secretary of Law about a case brought in the ICSID by SGS S.A., said that he <span class="fragment highlight-blue">had to search for the acronyms ICSID and BIT using Google</span> (Poulsen and Vis-Dunbar, 2009).
+						</p>
+					</section> -->
+					<section>
+						<h2>Operationalization</h2>
+
+						<div style="text-align:left">
+						Absolute value of the difference between an $\{ij, t\}$ on the "Law and Order" measure from the International Country Risk Guide (ICRG) dataset.
+						</div>
+					</section>
+				</section>
+
+				<section>
+
+					<section data-background='assets/randNet/netrand10.gif'>
+						<h2>Competing for Capital?</h2>						
+
+						<br>
+						<br>
+						<div style="float:left" class="fragment">
+						\begin{array}{l}
+							\text{Guzman (1998)} \\  \text{Elkins et al. (2006)} \\
+							 \text{Neumayer & Plümper (2010)} \\
+						\end{array}
+						</div>
+
+					</section>
+
+					<section>
+						<h2>Hub & Spoke Structure</h2>
+						<a href="#" class="navigate-down">
+							<img style="width: 1000px; background:none; border:none; box-shadow:none;" data-src="assets/cloNet/smallClique.png" alt="smallClique">
+						</a>
+					</section>
+<!-- 					<section>
+						<h2>Cherry-picked Example?</h2>
+						<a href="#" class="navigate-down">
+							<img style="width: 1000px; background:none; border:none; box-shadow:none;" data-src="assets/cloNet/cliquesDist.png" alt="cliqueDist">
+						</a>
+					</section>									 -->
+
+					<section>
+						<h2>Operationalization</h2>
+
+						<div style="text-align:left">
+							Weighted sum of BITs signed by other target countries with the same source country, weighting matrix is a measure of the degree to which countries export a similar basket of good (Neumayer & Plümper, 2010).
+						</div>
+					</section>
+				</section>
+
+				<section>
+
+					<section data-background='assets/randNet/netrand10.gif'>
+						<h2>Political Affinity</h2>
+					</section>
+				
+<!-- 					<section>
+						<p>
+							The Japanese prime minister, Shinzo Abe, in a speech in front of the United States Congress remarked that the Trans-Pacific Partnership Agreement (TPP) is ultimately about a <span class="fragment highlight-blue">deepening in existing political relationships</span>, and that “its strategic value is awesome”.
+						<p>
+					</section> -->
+					<section>
+						<p>
+							A senior investment lawyer called into provide expert testimony on behalf of the claimant in an ICSID proceeding asserted that, “BITs are very often pulled out of a drawer...and are <span class="fragment highlight-blue">put forward on the occasion of state visits when the heads of states need something to sign</span>”.
+						<p>
+					</section>
+					<section>
+						<p>
+							Additionally,in 2006, the former Attorney General of Pakistan, Makhdoom Khan, noted in a gathering of investment arbitration specialists that <span class="fragment highlight-blue">BITs were essentially seen as “photo-op agreements” </span>, something that countries would sign with a visiting delegation so as to highlight and reaffirm their relationship (Peterson, 2008).
+						<p>
+					</section>										
+
+					<section>
+						<h2>Operationalization</h2>
+
+						<div style="text-align:left">
+							"UNGA Ideal Point Distance", Bailey et al. (2015) provide a measure of state preferences from voting at the UNGA. 
+						</div>
+					</section>
+				</section>
+
+				<section>
+
+					<section data-background='assets/randNet/netrand10.gif'>
+						<h2>Endogenous Explanations</h2>
+					</section>
+
+					<section>
+						<h2>Indirect Ties</h2>
+							<ul>
+								<li><i>Closure</i>: Representation of the number of indirect ties a country has, this is a count of the number of transitive patterns in which i is involved.</li>
+							</ul>
+
+							<br><br>
+							$s_{i,l}(Y_{t}) = \sum_{j,k}^{g} Y_{ij,t} Y_{ik,t} Y_{jk,t}, \text{ where } i \neq j \neq k$
+
+					</section>	
+
+					<section>
+						<h2>Preferential Attachment</h2>
+							<ul>
+								<li><i>Popularity</i>: Representation of a country’s "popularity" in the network, this is the sum of the degree centrality to whom i has had a BIT come into force.</li>
+							</ul>
+
+							<br><br>
+							$s_{i,l}(Y_{t}) = \sum_{j}^{g} Y_{ij,t} \sqrt{\sum_{l}^{g} Y_{kj,t}}$
+
+					</section>
+
+				</section>
+
+				<section >
+
+					<section>
+						<h2>BIT Ratification</h2>
+						<ul>
+							<li class="fragment"> Sample includes 146 countries from 1987 to 2010 </li>
+							<li class="fragment"> The relation between any two actors $ij$ in a given year $t$ is defined as:
+							<br>
+							$y_{ij, t} = \left\{
+								\begin{array}{ll}
+									1 & : \text{if an agreement is in force}  \\
+									&   \;\;\;\; \text{between $i$ and $j$ at time t} \\
+									0 & : \text{otherwise} 
+								\end{array}
+								\right.$
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Model Specifications</h2>
+						<p class="fragment">Model 1:<br><code>Existing Explanations + Controls </code></p>
+						<p class="fragment">Model 2:<br><code>Existing Explanations + Political Affinity + Controls</p></code>
+						<p class="fragment">Model 3:<br><code>Existing Explanations + Political Affinity + Network Parameters + Controls</code></p>
+					</section>
+
+					<section>
+						<h2>Controls</h2>
+							<ul>
+								<li>Absolute value of the difference in $ij$ on logged GDP values</li>
+								<li>Binary indicator of whether both $ij$ are members of the OECD by time $t$</li>
+								<li>Number of pending and concluded ICSID disputes of country $i$</li>
+								<li>GDP Growth of country $i$</li>
+								<li>Net FDI Flows as a proportion of GDP of country $i$</li>
+							</ul>
+					</section>
+
+				</section>		
+
+				<section>
+
+					<section>
+						<h2>Model Results</h2>
+							<a href="#" class="navigate-down">
+								<img style="width: 1000px; background:none; border:none; box-shadow:none;" data-src="assets/saomCoef/allCoef.png" alt="allCoef">
+							</a>													
+					</section>		
+
+					<section>
+						<h2>SAOM & Dyadic Comparison</h2>
+							<a href="#" class="navigate-down">
+								<img style="width: 1000px; background:none; border:none; box-shadow:none;" data-src="assets/saomCoef/saomDyadCoef.png" alt="saomDyad">
+							</a>													
+					</section>		
+				
+				</section>
+
+				<section>
+					<section>
+						<h2>Out-of-Sample Performance</h2>
+						<a href="#" class="navigate-down">
+							<img style="width: 600px; background:none; border:none; box-shadow:none;" data-src="assets/perf/perf1.png" alt="perf1">
+						</a>
+					</section>
+					<section>
+						<a href="#" class="navigate-down">
+							<img style="width: 700px; background:none; border:none; box-shadow:none;" data-src="assets/perf/perf2.png" alt="perf2">
+						</a>
+					</section>					
+					<section>
+						<a href="#" class="navigate-down">
+							<img style="width: 700px; background:none; border:none; box-shadow:none;" data-src="assets/perf/perf3.png" alt="perf3">
+						</a>
+					</section>
+					<section>
+						<a href="#" class="navigate-down">
+							<img style="width: 700px; background:none; border:none; box-shadow:none;" data-src="assets/perf/perf4.png" alt="perf4">
+						</a>
+					</section>										
+				</section>											
+
+				<section>
+
+					<section style="text-align: left;" data-background='assets/randNet/netrand10.gif' data-transition="fade">
+
+						<h2>Conclusions</h2>
+						<ul>
+							<li class="fragment">What did we learn about BITs?</li>
+							<li class="fragment">Role of networks for the study of relational data?<br><br></li>
+						</ul>
+					</section>
+
+					<section style="text-align: left;" data-background='assets/multNet/netMult10.gif' data-transition="fade">
+
+						<h2>Conclusions</h2>
+
+						<ul>
+							<li>What did we learn about BITs?</li>
+							<li>Role of networks for the study of relational data?</li>
+							<li>Where is the field of networks going?</li>
+						</ul>
+
+					</section>
+
+					<section style="text-align:left;" data-background="assets/multNet/netMult10.gif" data-transition="fade">
+						
+					<center>
+					<h3>Thanks for your time.</h3>
+					</center><br> 
+						
+					<br><br><br><br><br><br><br><br><br>
+					<center>
+					<a href="http://s7minhas.com">s7minhas.com</a> <br>
+					<a href="http://github.com/s7minhas">github.com/s7minhas</a> 
+					</center>
+
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h2>Multilayer Networks</h2>
+						<center><a href="#" class="navigate-down">
+							<img style="width: 500px; background:none; border:none; box-shadow:none;" data-src="assets/mltrEqn/mltrEqnPic.png" alt="mltr">
+						</a></center>						
+						<ul>
+							<li class="fragment"> $\mathcal{G} = \{1, \ldots, g \}$ actors   </li>
+							<li class="fragment"> Relations between actors are measured over periods $T = \{1, \ldots, n \}$  </li>
+							<li class="fragment"> For every $ij$ actor pair in a given period $t$ we capture $v$ relational parameters  </li>
+							<li class="fragment"> Dependent variable, $\mathbf{Y}$, has dimensions $g \times g \times v \times n$  </li>
+						</ul>						
+					</section>
+					<section>
+						<h2>Modeling Focus</h2>
+						<ul>
+							<li class="fragment"> We explain the evolution of $\mathbf{Y}$ using a network adaptation of a first order VAR model</li>
+							<li class="fragment"> Explanatory features, $\mathbf{X}$, include structural characteristics of our $v$ networks, specifically: </li>
+							<ul>
+								<li class="fragment"> Direct Effect </li>
+								<li class="fragment"> Reciprocal Effect </li>
+								<li class="fragment"> Transitive Effect </li>
+							</ul>
+							<li class="fragment"> $\mathbf{X}$ has dimensions $g \times g \times (v * 3) \times n$  </li>
+							<li class="fragment"> Goal is to use previous interactions along our $v$ relational parameters to understand future interactions </li>
+						</ul>
+					</section>
+					<section>
+						<h2>Multilinear Tensor Regression</h2>
+						\begin{equation}  
+							\mathbf Y = \mathbf X \boldsymbol{\times} \{ \mathbf B_{1}, \mathbf B_{2}, \mathbf B_3\} + \mathbf E , \text{where}
+						\end{equation}
+						<br>
+						<ul>
+							<li class="fragment"> "$\boldsymbol{\times}$" is a multilinear operator known as the Tucker product </li>
+							<li class="fragment"> $\mathbf B_{1}$ and $\mathbf B_{2}$ are $g \times g$ matrices of regressions coefficients </li>
+							<li class="fragment"> $\mathbf B_{3}$ is a $v \times (v * 3)$ matrix of coefficients  </li>
+							<li class="fragment"> Single Country-country-variable observation:  
+							<br>
+							<br>
+							$y_{ijvt} = \sum_i' \sum_j' \sum_k' b_{1ii'} b_{2jj'} b_{3kk'} x_{i'j'k't}$
+							</li>
+
+						</ul>			
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>ICEWS Dyadic Event Database</h2>
+						<ul>
+							<li class="fragment"> ICEWS event data are constructed by applying NLP techniques </li>
+							<li class="fragment"> Corpus includes over 30 million media reports from $\approx 275$ local and global news sources </li>
+							<li class="fragment"> Focus on interactions among top fifty countries by GDP during period from 2001 to 2014 at monthly level </li>
+						</ul>
+						
+					</section>
+					<section>
+						<h2>Cooperation Variables</h2>
+						<ul>
+							<li class="fragment"><i>Verbal Cooperation</i>: The occurrence of dialogue-based meetings (e.g. negotiations, peace talks), statements that <span style="background-color: #d0d1e6">express a desire to cooperate or appeal for assistance</span> (other than material aid) from other actors.</li>
+							<li class="fragment"><i>Material Cooperation</i>: <span style="background-color: #d0d1e6">Physical acts of collaboration or assistance</span>, including receiving or sending aid, reducing bans and sentencing, etc..</li>							
+						</ul>
+					</section>
+				</section>	
+
+				<section>
+					<section>
+						<h2>Relational Covariates</h2>
+						<a href="#" class="navigate-down">
+							<img style="width: 600px; background:none; border:none; box-shadow:none;" data-src="assets/mltrCoef/coop_coef.png" alt="coopCoef">
+						</a>
+					</section>
+					<section>
+						<h2>Dyadic Interdependencies</h2>
+						<a href="#" class="navigate-down">
+							<img style="width: 1000px; background:none; border:none; box-shadow:none;" data-src="assets/mltrCoef/coop_net.png" alt="coopNet">
+							<img style="width: 300px; background:none; border:none; box-shadow:none;" data-src="assets/mltrCoef/map.png" alt="map1">	
+						</a>
+					</section>
+				</section>	
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				math: {
+			        // mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+			        mathjax: 'MathJax-2.5-latest/MathJax.js',
+			        config: 'TeX-AMS_HTML-full',  // See http://docs.mathjax.org/en/latest/config-files.html					
+			        processEnvironments: true
+				},
+
+				TeX: {
+				  extensions: ["autobold.js"] // adds support for bold math symbols
+				},
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+			Reveal.configure({
+				keyboard: {
+				13: 'next', // go to the next slide when the ENTER key is pressed
+				27: function() {}, // do something custom when ESC is pressed
+				32: function vidplay(){ 
+				      var video = document.getElementById("video");
+				      if (video.paused == true) video.play();
+				      else video.pause();
+				      }
+				 }
+			});
+
+		</script>
+
+	</body>
+</html>
+				
