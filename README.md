@@ -1,8 +1,10 @@
 Talk covering:
 
+[Click here](https://cdn.rawgit.com/s7minhas/netTalk_saom_mltr/master/index.html#/1) to open talk in browser.
+
 * General motivation for networks
 
-* SAOM 
+* SAOM
 
      + Model assumptions, description
      + BITs applications
